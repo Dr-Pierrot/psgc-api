@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\API\PSGC;
+namespace App\Http\Controllers\API\PSGC_new;
 
 use App\Http\Controllers\Controller;
 use App\Models\PSGC\Q12026;

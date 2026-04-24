@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\api\AuthenticationController;
-use App\Http\Controllers\API\PSGC\Q12026Controller;
+use App\Http\Controllers\API\PSGC_new\Q12026Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
