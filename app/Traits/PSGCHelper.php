@@ -7,7 +7,7 @@ class PSGCHelper
     /**
      * Helper function to format paginated response
      */
-    public function formatPaginatedResponse(
+    public static function formatPaginatedResponse(
         $data,
         $message = "Data retrieved successfully",
     ) {
@@ -28,7 +28,7 @@ class PSGCHelper
     /**
      * Helper function to format non-paginated response
      */
-    private function formatResponse(
+    public static function formatResponse(
         $data,
         $message = "Data retrieved successfully",
         $responseCode = 200,
@@ -47,7 +47,7 @@ class PSGCHelper
     /**
      * Helper function to format error response
      */
-    private function formatErrorResponse(
+    public static function formatErrorResponse(
         $message = "An error occurred",
         $responseCode = 500,
     ) {
