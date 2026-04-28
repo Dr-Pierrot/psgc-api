@@ -5,6 +5,64 @@ namespace App\Traits;
 class PSGCHelper
 {
     /**
+     * Helper function to format paginated response
+     */
+    public function formatPaginatedResponse(
+        $data,
+        $message = "Data retrieved successfully",
+    ) {
+        return [
+            "response_code" => 200,
+            "status" => "success",
+            "message" => $message,
+            "data" => $data->items(),
+            "pagination" => [
+                "current_page" => $data->currentPage(),
+                "total_pages" => $data->lastPage(),
+                "per_page" => $data->perPage(),
+                "total" => $data->total(),
+            ],
+        ];
+    }
+
+    /**
+     * Helper function to format non-paginated response
+     */
+    private function formatResponse(
+        $data,
+        $message = "Data retrieved successfully",
+        $responseCode = 200,
+    ) {
+        return response()->json(
+            [
+                "response_code" => $responseCode,
+                "status" => "success",
+                "message" => $message,
+                "data" => $data,
+            ],
+            $responseCode,
+        );
+    }
+
+    /**
+     * Helper function to format error response
+     */
+    private function formatErrorResponse(
+        $message = "An error occurred",
+        $responseCode = 500,
+    ) {
+        return response()->json(
+            [
+                "response_code" => $responseCode,
+                "status" => "error",
+                "message" => $message,
+                "data" => null,
+            ],
+            $responseCode,
+        );
+    }
+
+    /**
      * PSGC Code Structure (10 digits):
      * Positions 1-2:   Region code
      * Positions 3-5:   Province code
@@ -194,9 +252,9 @@ class PSGCHelper
     public static function buildPsgcCode($regionCode, $provinceCode = '000', $munCityCode = '00', $barangayCode = '000')
     {
         return str_pad($regionCode, 2, '0', STR_PAD_LEFT) .
-               str_pad($provinceCode, 3, '0', STR_PAD_LEFT) .
-               str_pad($munCityCode, 2, '0', STR_PAD_LEFT) .
-               str_pad($barangayCode, 3, '0', STR_PAD_LEFT);
+            str_pad($provinceCode, 3, '0', STR_PAD_LEFT) .
+            str_pad($munCityCode, 2, '0', STR_PAD_LEFT) .
+            str_pad($barangayCode, 3, '0', STR_PAD_LEFT);
     }
 
     /**
@@ -262,8 +320,8 @@ class PSGCHelper
         }
 
         return substr($psgcCode, 0, 2) . '-' .
-               substr($psgcCode, 2, 3) . '-' .
-               substr($psgcCode, 5, 2) . '-' .
-               substr($psgcCode, 7, 3);
+            substr($psgcCode, 2, 3) . '-' .
+            substr($psgcCode, 5, 2) . '-' .
+            substr($psgcCode, 7, 3);
     }
 }
