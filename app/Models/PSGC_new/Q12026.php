@@ -5,9 +5,50 @@ namespace App\Models\PSGC_new;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 
+use OpenApi\Attributes as OA;
+
+#[OA\Schema(
+    schema: "Q12026",
+    title: "Q12026 Model",
+    description: "This is the model for PSGC records.",
+    required: [
+        "psgc_code",
+        "name",
+        "correspondence_code",
+        "geographic_level",
+        "old_name",
+        "city_classification",
+        "income_classification",
+        "urban_rural",
+        "population",
+        "region_code",
+        "province_code",
+        "mun_city_code",
+        "barangay_code",
+        "mun_city_identifier",
+        "barangay_identifier",
+    ],
+    properties: [
+        new OA\Property(property: "psgc_code", type: "string", example: "0100000000"),
+        new OA\Property(property: "name", type: "string", example: "Region I Ilocos Norte"),
+        new OA\Property(property: "correspondence_code", type: "string", example: "010000000"),
+        new OA\Property(property: "geographic_level", type: "string", example: "Reg"),
+        new OA\Property(property: "old_name", type: "string", example: null),
+        new OA\Property(property: "city_classification", type: "string", example: null),
+        new OA\Property(property: "income_classification", type: "string", example: null),
+        new OA\Property(property: "urban_rural", type: "string", example: null),
+        new OA\Property(property: "population", type: "string", example: null),
+        new OA\Property(property: "region_code", type: "string", example: "01"),
+        new OA\Property(property: "province_code", type: "string", example: "000"),
+        new OA\Property(property: "mun_city_code", type: "string", example: "00"),
+        new OA\Property(property: "barangay_code", type: "string", example: "000"),
+        new OA\Property(property: "mun_city_identifier", type: "string", example: "00000"),
+        new OA\Property(property: "barangay_identifier", type: "string", example: "00000000"),
+    ]
+)]
 class Q12026 extends Model
 {
-    protected $table = "q1-2026";
+    protected $table = "psgcs";
     protected $primaryKey = "id";
     public $timestamps = true;
 

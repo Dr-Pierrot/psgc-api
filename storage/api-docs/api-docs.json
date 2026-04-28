@@ -1406,6 +1406,90 @@
     },
     "components": {
         "schemas": {
+            "Q12026": {
+                "title": "Q12026 Model",
+                "description": "This is the model for PSGC records.",
+                "required": [
+                    "psgc_code",
+                    "name",
+                    "correspondence_code",
+                    "geographic_level",
+                    "old_name",
+                    "city_classification",
+                    "income_classification",
+                    "urban_rural",
+                    "population",
+                    "region_code",
+                    "province_code",
+                    "mun_city_code",
+                    "barangay_code",
+                    "mun_city_identifier",
+                    "barangay_identifier"
+                ],
+                "properties": {
+                    "psgc_code": {
+                        "type": "string",
+                        "example": "0100000000"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Region I Ilocos Norte"
+                    },
+                    "correspondence_code": {
+                        "type": "string",
+                        "example": "010000000"
+                    },
+                    "geographic_level": {
+                        "type": "string",
+                        "example": "Reg"
+                    },
+                    "old_name": {
+                        "type": "string",
+                        "example": null
+                    },
+                    "city_classification": {
+                        "type": "string",
+                        "example": null
+                    },
+                    "income_classification": {
+                        "type": "string",
+                        "example": null
+                    },
+                    "urban_rural": {
+                        "type": "string",
+                        "example": null
+                    },
+                    "population": {
+                        "type": "string",
+                        "example": null
+                    },
+                    "region_code": {
+                        "type": "string",
+                        "example": "01"
+                    },
+                    "province_code": {
+                        "type": "string",
+                        "example": "000"
+                    },
+                    "mun_city_code": {
+                        "type": "string",
+                        "example": "00"
+                    },
+                    "barangay_code": {
+                        "type": "string",
+                        "example": "000"
+                    },
+                    "mun_city_identifier": {
+                        "type": "string",
+                        "example": "00000"
+                    },
+                    "barangay_identifier": {
+                        "type": "string",
+                        "example": "00000000"
+                    }
+                },
+                "type": "object"
+            },
             "User": {
                 "title": "User",
                 "description": "User model",
