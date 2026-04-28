@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\API\PSGC_new;
 
 use App\Http\Controllers\Controller;
-use App\Models\PSGC\Q12026;
+use App\Models\PSGC_new\Q12026;
 use App\Traits\PSGCHelper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -11,64 +11,6 @@ use OpenApi\Attributes as OA;
 
 class Q12026Controller extends Controller
 {
-    /**
-     * Helper function to format paginated response
-     */
-    private function formatPaginatedResponse(
-        $data,
-        $message = "Data retrieved successfully",
-    ) {
-        return [
-            "response_code" => 200,
-            "status" => "success",
-            "message" => $message,
-            "data" => $data->items(),
-            "pagination" => [
-                "current_page" => $data->currentPage(),
-                "total_pages" => $data->lastPage(),
-                "per_page" => $data->perPage(),
-                "total" => $data->total(),
-            ],
-        ];
-    }
-
-    /**
-     * Helper function to format non-paginated response
-     */
-    private function formatResponse(
-        $data,
-        $message = "Data retrieved successfully",
-        $responseCode = 200,
-    ) {
-        return response()->json(
-            [
-                "response_code" => $responseCode,
-                "status" => "success",
-                "message" => $message,
-                "data" => $data,
-            ],
-            $responseCode,
-        );
-    }
-
-    /**
-     * Helper function to format error response
-     */
-    private function formatErrorResponse(
-        $message = "An error occurred",
-        $responseCode = 500,
-    ) {
-        return response()->json(
-            [
-                "response_code" => $responseCode,
-                "status" => "error",
-                "message" => $message,
-                "data" => null,
-            ],
-            $responseCode,
-        );
-    }
-
     #[
         OA\Get(
             path: "/api/psgc",
@@ -135,12 +77,12 @@ class Q12026Controller extends Controller
     public function index(Request $request)
     {
         try {
-            $perPage = $request->get("per_page", 15);
+            $perPage = $request->input("per_page", 15);
             $data = Q12026::paginate($perPage);
-            return response()->json($this->formatPaginatedResponse($data));
+            return response()->json(PSGCHelper::formatPaginatedResponse($data));
         } catch (\Exception $e) {
             Log::error("PSGC Index Error: " . $e->getMessage());
-            return $this->formatErrorResponse(
+            return PSGCHelper::formatErrorResponse(
                 "Failed to retrieve PSGC records",
                 500,
             );
@@ -195,29 +137,29 @@ class Q12026Controller extends Controller
     public function search(Request $request)
     {
         try {
-            $query = $request->get("q");
+            $query = $request->input("q");
 
             if (!$query) {
-                return $this->formatErrorResponse(
+                return PSGCHelper::formatErrorResponse(
                     "Search query is required",
                     400,
                 );
             }
 
-            $perPage = $request->get("per_page", 15);
+            $perPage = $request->input("per_page", 15);
             $data = Q12026::where("name", "like", "%" . $query . "%")
                 ->orWhere("psgc_code", "like", "%" . $query . "%")
                 ->paginate($perPage);
 
             return response()->json(
-                $this->formatPaginatedResponse(
+                PSGCHelper::formatPaginatedResponse(
                     $data,
                     "Search results retrieved successfully",
                 ),
             );
         } catch (\Exception $e) {
             Log::error("PSGC Search Error: " . $e->getMessage());
-            return $this->formatErrorResponse("Search failed", 500);
+            return PSGCHelper::formatErrorResponse("Search failed", 500);
         }
     }
 
@@ -255,16 +197,16 @@ class Q12026Controller extends Controller
             $record = Q12026::where("psgc_code", $psgcCode)->first();
 
             if (!$record) {
-                return $this->formatErrorResponse("Record not found", 404);
+                return PSGCHelper::formatErrorResponse("Record not found", 404);
             }
 
-            return $this->formatResponse(
+            return PSGCHelper::formatResponse(
                 $record,
                 "Record retrieved successfully",
             );
         } catch (\Exception $e) {
             Log::error("PSGC Show Error: " . $e->getMessage());
-            return $this->formatErrorResponse("Failed to retrieve record", 500);
+            return PSGCHelper::formatErrorResponse("Failed to retrieve record", 500);
         }
     }
 
@@ -314,13 +256,13 @@ class Q12026Controller extends Controller
     {
         try {
             $levels = Q12026::getGeographicLevels();
-            return $this->formatResponse(
+            return PSGCHelper::formatResponse(
                 $levels,
                 "Geographic levels retrieved successfully",
             );
         } catch (\Exception $e) {
             Log::error("Geographic Levels Error: " . $e->getMessage());
-            return $this->formatErrorResponse(
+            return PSGCHelper::formatErrorResponse(
                 "Failed to retrieve geographic levels",
                 500,
             );
@@ -349,13 +291,13 @@ class Q12026Controller extends Controller
     {
         try {
             $classifications = Q12026::getCityClassifications();
-            return $this->formatResponse(
+            return PSGCHelper::formatResponse(
                 $classifications,
                 "City classifications retrieved successfully",
             );
         } catch (\Exception $e) {
             Log::error("City Classifications Error: " . $e->getMessage());
-            return $this->formatErrorResponse(
+            return PSGCHelper::formatErrorResponse(
                 "Failed to retrieve city classifications",
                 500,
             );
@@ -384,13 +326,13 @@ class Q12026Controller extends Controller
     {
         try {
             $classifications = Q12026::getIncomeClassifications();
-            return $this->formatResponse(
+            return PSGCHelper::formatResponse(
                 $classifications,
                 "Income classifications retrieved successfully",
             );
         } catch (\Exception $e) {
             Log::error("Income Classifications Error: " . $e->getMessage());
-            return $this->formatErrorResponse(
+            return PSGCHelper::formatErrorResponse(
                 "Failed to retrieve income classifications",
                 500,
             );
@@ -419,7 +361,7 @@ class Q12026Controller extends Controller
     {
         try {
             $classifications = Q12026::getUrbanRuralClassifications();
-            return $this->formatResponse(
+            return PSGCHelper::formatResponse(
                 $classifications,
                 "Urban/rural classifications retrieved successfully",
             );
@@ -427,7 +369,7 @@ class Q12026Controller extends Controller
             Log::error(
                 "Urban/Rural Classifications Error: " . $e->getMessage(),
             );
-            return $this->formatErrorResponse(
+            return PSGCHelper::formatErrorResponse(
                 "Failed to retrieve urban/rural classifications",
                 500,
             );
@@ -471,17 +413,17 @@ class Q12026Controller extends Controller
     public function regions(Request $request)
     {
         try {
-            $perPage = $request->get("per_page", 15);
+            $perPage = $request->input("per_page", 15);
             $data = Q12026::regions()->paginate($perPage);
             return response()->json(
-                $this->formatPaginatedResponse(
+                PSGCHelper::formatPaginatedResponse(
                     $data,
                     "Regions retrieved successfully",
                 ),
             );
         } catch (\Exception $e) {
             Log::error("Regions Error: " . $e->getMessage());
-            return $this->formatErrorResponse(
+            return PSGCHelper::formatErrorResponse(
                 "Failed to retrieve regions",
                 500,
             );
@@ -522,16 +464,16 @@ class Q12026Controller extends Controller
             $record = Q12026::regions()->where("psgc_code", $psgcCode)->first();
 
             if (!$record) {
-                return $this->formatErrorResponse("Region not found", 404);
+                return PSGCHelper::formatErrorResponse("Region not found", 404);
             }
 
-            return $this->formatResponse(
+            return PSGCHelper::formatResponse(
                 $record,
                 "Region retrieved successfully",
             );
         } catch (\Exception $e) {
             Log::error("Region Show Error: " . $e->getMessage());
-            return $this->formatErrorResponse("Failed to retrieve region", 500);
+            return PSGCHelper::formatErrorResponse("Failed to retrieve region", 500);
         }
     }
 
@@ -583,24 +525,24 @@ class Q12026Controller extends Controller
             $region = Q12026::regions()->where("psgc_code", $psgcCode)->first();
 
             if (!$region) {
-                return $this->formatErrorResponse("Region not found", 404);
+                return PSGCHelper::formatErrorResponse("Region not found", 404);
             }
 
             $regionCode = PSGCHelper::extractRegionCode($psgcCode);
-            $perPage = $request->get("per_page", 15);
+            $perPage = $request->input("per_page", 15);
             $data = Q12026::provinces()
                 ->byRegionCode($regionCode)
                 ->paginate($perPage);
 
             return response()->json(
-                $this->formatPaginatedResponse(
+                PSGCHelper::formatPaginatedResponse(
                     $data,
                     "Provinces retrieved successfully",
                 ),
             );
         } catch (\Exception $e) {
             Log::error("Region Provinces Error: " . $e->getMessage());
-            return $this->formatErrorResponse(
+            return PSGCHelper::formatErrorResponse(
                 "Failed to retrieve provinces",
                 500,
             );
@@ -655,24 +597,24 @@ class Q12026Controller extends Controller
             $region = Q12026::regions()->where("psgc_code", $psgcCode)->first();
 
             if (!$region) {
-                return $this->formatErrorResponse("Region not found", 404);
+                return PSGCHelper::formatErrorResponse("Region not found", 404);
             }
 
             $regionCode = PSGCHelper::extractRegionCode($psgcCode);
-            $perPage = $request->get("per_page", 15);
+            $perPage = $request->input("per_page", 15);
             $data = Q12026::cities()
                 ->byRegionCode($regionCode)
                 ->paginate($perPage);
 
             return response()->json(
-                $this->formatPaginatedResponse(
+                PSGCHelper::formatPaginatedResponse(
                     $data,
                     "Cities retrieved successfully",
                 ),
             );
         } catch (\Exception $e) {
             Log::error("Region Cities Error: " . $e->getMessage());
-            return $this->formatErrorResponse("Failed to retrieve cities", 500);
+            return PSGCHelper::formatErrorResponse("Failed to retrieve cities", 500);
         }
     }
 
@@ -724,24 +666,24 @@ class Q12026Controller extends Controller
             $region = Q12026::regions()->where("psgc_code", $psgcCode)->first();
 
             if (!$region) {
-                return $this->formatErrorResponse("Region not found", 404);
+                return PSGCHelper::formatErrorResponse("Region not found", 404);
             }
 
             $regionCode = PSGCHelper::extractRegionCode($psgcCode);
-            $perPage = $request->get("per_page", 15);
+            $perPage = $request->input("per_page", 15);
             $data = Q12026::municipalities()
                 ->byRegionCode($regionCode)
                 ->paginate($perPage);
 
             return response()->json(
-                $this->formatPaginatedResponse(
+                PSGCHelper::formatPaginatedResponse(
                     $data,
                     "Municipalities retrieved successfully",
                 ),
             );
         } catch (\Exception $e) {
             Log::error("Region Municipalities Error: " . $e->getMessage());
-            return $this->formatErrorResponse(
+            return PSGCHelper::formatErrorResponse(
                 "Failed to retrieve municipalities",
                 500,
             );
@@ -796,24 +738,24 @@ class Q12026Controller extends Controller
             $region = Q12026::regions()->where("psgc_code", $psgcCode)->first();
 
             if (!$region) {
-                return $this->formatErrorResponse("Region not found", 404);
+                return PSGCHelper::formatErrorResponse("Region not found", 404);
             }
 
             $regionCode = PSGCHelper::extractRegionCode($psgcCode);
-            $perPage = $request->get("per_page", 15);
+            $perPage = $request->input("per_page", 15);
             $data = Q12026::subMunicipalities()
                 ->byRegionCode($regionCode)
                 ->paginate($perPage);
 
             return response()->json(
-                $this->formatPaginatedResponse(
+                PSGCHelper::formatPaginatedResponse(
                     $data,
                     "Sub-municipalities retrieved successfully",
                 ),
             );
         } catch (\Exception $e) {
             Log::error("Region Sub-municipalities Error: " . $e->getMessage());
-            return $this->formatErrorResponse(
+            return PSGCHelper::formatErrorResponse(
                 "Failed to retrieve sub-municipalities",
                 500,
             );
@@ -868,25 +810,134 @@ class Q12026Controller extends Controller
             $region = Q12026::regions()->where("psgc_code", $psgcCode)->first();
 
             if (!$region) {
-                return $this->formatErrorResponse("Region not found", 404);
+                return PSGCHelper::formatErrorResponse("Region not found", 404);
             }
 
             $regionCode = PSGCHelper::extractRegionCode($psgcCode);
-            $perPage = $request->get("per_page", 15);
+            $perPage = $request->input("per_page", 15);
             $data = Q12026::barangays()
                 ->byRegionCode($regionCode)
                 ->paginate($perPage);
 
             return response()->json(
-                $this->formatPaginatedResponse(
+                PSGCHelper::formatPaginatedResponse(
                     $data,
                     "Barangays retrieved successfully",
                 ),
             );
         } catch (\Exception $e) {
             Log::error("Region Barangays Error: " . $e->getMessage());
-            return $this->formatErrorResponse(
+            return PSGCHelper::formatErrorResponse(
                 "Failed to retrieve barangays",
+                500,
+            );
+        }
+    }
+
+    #[
+        OA\Get(
+            path: "/api/provinces",
+            summary: "Get all provinces",
+            description: "Retrieve all provinces with pagination",
+            tags: ["Provinces"],
+            parameters: [
+                new OA\Parameter(
+                    name: "page",
+                    description: "Page number",
+                    in: "query",
+                    required: false,
+                    schema: new OA\Schema(type: "integer", default: 1),
+                ),
+                new OA\Parameter(
+                    name: "per_page",
+                    description: "Records per page",
+                    in: "query",
+                    required: false,
+                    schema: new OA\Schema(type: "integer", default: 15),
+                ),
+            ],
+            responses: [
+                new OA\Response(
+                    response: 200,
+                    description: "Provinces retrieved successfully",
+                ),
+                new OA\Response(
+                    response: 500,
+                    description: "Internal server error",
+                ),
+            ],
+        ),
+    ]
+    public function provinces(Request $request)
+    {
+        try {
+            $perPage = $request->input("per_page", 15);
+            $data = Q12026::provinces()->paginate($perPage);
+            return response()->json(
+                PSGCHelper::formatPaginatedResponse(
+                    $data,
+                    "Provinces retrieved successfully",
+                ),
+            );
+        } catch (\Exception $e) {
+            Log::error("Provinces Error: " . $e->getMessage());
+            return PSGCHelper::formatErrorResponse(
+                "Failed to retrieve provinces",
+                500,
+            );
+        }
+    }
+
+    #[
+        OA\Get(
+            path: "/api/provinces/{psgc_code}",
+            summary: "Get specific province",
+            description: "Retrieve a specific province by its PSGC code",
+            tags: ["Provinces"],
+            parameters: [
+                new OA\Parameter(
+                    name: "psgc_code",
+                    description: "Province PSGC code",
+                    in: "path",
+                    required: true,
+                    schema: new OA\Schema(type: "string"),
+                ),
+            ],
+            responses: [
+                new OA\Response(
+                    response: 200,
+                    description: "Province retrieved successfully",
+                ),
+                new OA\Response(
+                    response: 404,
+                    description: "Province not found",
+                ),
+                new OA\Response(
+                    response: 500,
+                    description: "Internal server error",
+                ),
+            ],
+        ),
+    ]
+    public function province($psgcCode)
+    {
+        try {
+            $record = Q12026::provinces()
+                ->where("psgc_code", $psgcCode)
+                ->first();
+
+            if (!$record) {
+                return PSGCHelper::formatErrorResponse("Province not found", 404);
+            }
+
+            return PSGCHelper::formatResponse(
+                $record,
+                "Province retrieved successfully",
+            );
+        } catch (\Exception $e) {
+            Log::error("Province Show Error: " . $e->getMessage());
+            return PSGCHelper::formatErrorResponse(
+                "Failed to retrieve province",
                 500,
             );
         }
@@ -945,13 +996,13 @@ class Q12026Controller extends Controller
                 ->first();
 
             if (!$province) {
-                return $this->formatErrorResponse("Province not found", 404);
+                return PSGCHelper::formatErrorResponse("Province not found", 404);
             }
 
             $munCityIdentifier = PSGCHelper::extractMunCityIdentifier(
                 $psgcCode,
             );
-            $perPage = $request->get("per_page", 15);
+            $perPage = $request->input("per_page", 15);
 
             // Get both cities and municipalities for this province
             $citiesQuery = Q12026::cities()->where(
@@ -971,14 +1022,14 @@ class Q12026Controller extends Controller
                 ->paginate($perPage);
 
             return response()->json(
-                $this->formatPaginatedResponse(
+                PSGCHelper::formatPaginatedResponse(
                     $data,
                     "Cities/Municipalities retrieved successfully",
                 ),
             );
         } catch (\Exception $e) {
             Log::error("Province Cities Error: " . $e->getMessage());
-            return $this->formatErrorResponse(
+            return PSGCHelper::formatErrorResponse(
                 "Failed to retrieve cities/municipalities",
                 500,
             );
@@ -1038,13 +1089,13 @@ class Q12026Controller extends Controller
                 ->first();
 
             if (!$province) {
-                return $this->formatErrorResponse("Province not found", 404);
+                return PSGCHelper::formatErrorResponse("Province not found", 404);
             }
 
             $barangayIdentifier = PSGCHelper::extractBarangayIdentifier(
                 $psgcCode,
             );
-            $perPage = $request->get("per_page", 15);
+            $perPage = $request->input("per_page", 15);
 
             // Get barangays matching the province's barangay identifier
             $data = Q12026::barangays()
@@ -1056,14 +1107,14 @@ class Q12026Controller extends Controller
                 ->paginate($perPage);
 
             return response()->json(
-                $this->formatPaginatedResponse(
+                PSGCHelper::formatPaginatedResponse(
                     $data,
                     "Barangays retrieved successfully",
                 ),
             );
         } catch (\Exception $e) {
             Log::error("Province Barangays Error: " . $e->getMessage());
-            return $this->formatErrorResponse(
+            return PSGCHelper::formatErrorResponse(
                 "Failed to retrieve barangays",
                 500,
             );
@@ -1131,7 +1182,7 @@ class Q12026Controller extends Controller
             })->first();
 
             if (!$municity) {
-                return $this->formatErrorResponse(
+                return PSGCHelper::formatErrorResponse(
                     "City/Municipality not found",
                     404,
                 );
@@ -1140,7 +1191,7 @@ class Q12026Controller extends Controller
             $barangayIdentifier = PSGCHelper::extractBarangayIdentifier(
                 $psgcCode,
             );
-            $perPage = $request->get("per_page", 15);
+            $perPage = $request->input("per_page", 15);
 
             // Get barangays matching the city/municipality's barangay identifier
             $data = Q12026::barangays()
@@ -1152,7 +1203,7 @@ class Q12026Controller extends Controller
                 ->paginate($perPage);
 
             return response()->json(
-                $this->formatPaginatedResponse(
+                PSGCHelper::formatPaginatedResponse(
                     $data,
                     "Barangays retrieved successfully",
                 ),
@@ -1161,121 +1212,13 @@ class Q12026Controller extends Controller
             Log::error(
                 "City/Municipality Barangays Error: " . $e->getMessage(),
             );
-            return $this->formatErrorResponse(
+            return PSGCHelper::formatErrorResponse(
                 "Failed to retrieve barangays",
                 500,
             );
         }
     }
 
-    #[
-        OA\Get(
-            path: "/api/provinces",
-            summary: "Get all provinces",
-            description: "Retrieve all provinces with pagination",
-            tags: ["Provinces"],
-            parameters: [
-                new OA\Parameter(
-                    name: "page",
-                    description: "Page number",
-                    in: "query",
-                    required: false,
-                    schema: new OA\Schema(type: "integer", default: 1),
-                ),
-                new OA\Parameter(
-                    name: "per_page",
-                    description: "Records per page",
-                    in: "query",
-                    required: false,
-                    schema: new OA\Schema(type: "integer", default: 15),
-                ),
-            ],
-            responses: [
-                new OA\Response(
-                    response: 200,
-                    description: "Provinces retrieved successfully",
-                ),
-                new OA\Response(
-                    response: 500,
-                    description: "Internal server error",
-                ),
-            ],
-        ),
-    ]
-    public function provinces(Request $request)
-    {
-        try {
-            $perPage = $request->get("per_page", 15);
-            $data = Q12026::provinces()->paginate($perPage);
-            return response()->json(
-                $this->formatPaginatedResponse(
-                    $data,
-                    "Provinces retrieved successfully",
-                ),
-            );
-        } catch (\Exception $e) {
-            Log::error("Provinces Error: " . $e->getMessage());
-            return $this->formatErrorResponse(
-                "Failed to retrieve provinces",
-                500,
-            );
-        }
-    }
-
-    #[
-        OA\Get(
-            path: "/api/provinces/{psgc_code}",
-            summary: "Get specific province",
-            description: "Retrieve a specific province by its PSGC code",
-            tags: ["Provinces"],
-            parameters: [
-                new OA\Parameter(
-                    name: "psgc_code",
-                    description: "Province PSGC code",
-                    in: "path",
-                    required: true,
-                    schema: new OA\Schema(type: "string"),
-                ),
-            ],
-            responses: [
-                new OA\Response(
-                    response: 200,
-                    description: "Province retrieved successfully",
-                ),
-                new OA\Response(
-                    response: 404,
-                    description: "Province not found",
-                ),
-                new OA\Response(
-                    response: 500,
-                    description: "Internal server error",
-                ),
-            ],
-        ),
-    ]
-    public function province($psgcCode)
-    {
-        try {
-            $record = Q12026::provinces()
-                ->where("psgc_code", $psgcCode)
-                ->first();
-
-            if (!$record) {
-                return $this->formatErrorResponse("Province not found", 404);
-            }
-
-            return $this->formatResponse(
-                $record,
-                "Province retrieved successfully",
-            );
-        } catch (\Exception $e) {
-            Log::error("Province Show Error: " . $e->getMessage());
-            return $this->formatErrorResponse(
-                "Failed to retrieve province",
-                500,
-            );
-        }
-    }
 
     #[
         OA\Get(
@@ -1314,17 +1257,17 @@ class Q12026Controller extends Controller
     public function cities(Request $request)
     {
         try {
-            $perPage = $request->get("per_page", 15);
+            $perPage = $request->input("per_page", 15);
             $data = Q12026::cities()->paginate($perPage);
             return response()->json(
-                $this->formatPaginatedResponse(
+                PSGCHelper::formatPaginatedResponse(
                     $data,
                     "Cities retrieved successfully",
                 ),
             );
         } catch (\Exception $e) {
             Log::error("Cities Error: " . $e->getMessage());
-            return $this->formatErrorResponse("Failed to retrieve cities", 500);
+            return PSGCHelper::formatErrorResponse("Failed to retrieve cities", 500);
         }
     }
 
@@ -1362,16 +1305,16 @@ class Q12026Controller extends Controller
             $record = Q12026::cities()->where("psgc_code", $psgcCode)->first();
 
             if (!$record) {
-                return $this->formatErrorResponse("City not found", 404);
+                return PSGCHelper::formatErrorResponse("City not found", 404);
             }
 
-            return $this->formatResponse(
+            return PSGCHelper::formatResponse(
                 $record,
                 "City retrieved successfully",
             );
         } catch (\Exception $e) {
             Log::error("City Show Error: " . $e->getMessage());
-            return $this->formatErrorResponse("Failed to retrieve city", 500);
+            return PSGCHelper::formatErrorResponse("Failed to retrieve city", 500);
         }
     }
 
@@ -1412,20 +1355,20 @@ class Q12026Controller extends Controller
     public function highly_urbanized_cities(Request $request)
     {
         try {
-            $perPage = $request->get("per_page", 15);
+            $perPage = $request->input("per_page", 15);
             $data = Q12026::cities()
                 ->where("city_classification", "like", "%HUC%")
                 ->paginate($perPage);
 
             return response()->json(
-                $this->formatPaginatedResponse(
+                PSGCHelper::formatPaginatedResponse(
                     $data,
                     "Highly urbanized cities retrieved successfully",
                 ),
             );
         } catch (\Exception $e) {
             Log::error("HUC Cities Error: " . $e->getMessage());
-            return $this->formatErrorResponse(
+            return PSGCHelper::formatErrorResponse(
                 "Failed to retrieve highly urbanized cities",
                 500,
             );
@@ -1469,20 +1412,20 @@ class Q12026Controller extends Controller
     public function component_cities(Request $request)
     {
         try {
-            $perPage = $request->get("per_page", 15);
+            $perPage = $request->input("per_page", 15);
             $data = Q12026::cities()
                 ->where("city_classification", "Component City")
                 ->paginate($perPage);
 
             return response()->json(
-                $this->formatPaginatedResponse(
+                PSGCHelper::formatPaginatedResponse(
                     $data,
                     "Component cities retrieved successfully",
                 ),
             );
         } catch (\Exception $e) {
             Log::error("Component Cities Error: " . $e->getMessage());
-            return $this->formatErrorResponse(
+            return PSGCHelper::formatErrorResponse(
                 "Failed to retrieve component cities",
                 500,
             );
@@ -1526,13 +1469,13 @@ class Q12026Controller extends Controller
     public function independent_component_cities(Request $request)
     {
         try {
-            $perPage = $request->get("per_page", 15);
+            $perPage = $request->input("per_page", 15);
             $data = Q12026::cities()
                 ->where("city_classification", "Independent Component City")
                 ->paginate($perPage);
 
             return response()->json(
-                $this->formatPaginatedResponse(
+                PSGCHelper::formatPaginatedResponse(
                     $data,
                     "Independent component cities retrieved successfully",
                 ),
@@ -1541,7 +1484,7 @@ class Q12026Controller extends Controller
             Log::error(
                 "Independent Component Cities Error: " . $e->getMessage(),
             );
-            return $this->formatErrorResponse(
+            return PSGCHelper::formatErrorResponse(
                 "Failed to retrieve independent component cities",
                 500,
             );
@@ -1585,17 +1528,17 @@ class Q12026Controller extends Controller
     public function municipalities(Request $request)
     {
         try {
-            $perPage = $request->get("per_page", 15);
+            $perPage = $request->input("per_page", 15);
             $data = Q12026::municipalities()->paginate($perPage);
             return response()->json(
-                $this->formatPaginatedResponse(
+                PSGCHelper::formatPaginatedResponse(
                     $data,
                     "Municipalities retrieved successfully",
                 ),
             );
         } catch (\Exception $e) {
             Log::error("Municipalities Error: " . $e->getMessage());
-            return $this->formatErrorResponse(
+            return PSGCHelper::formatErrorResponse(
                 "Failed to retrieve municipalities",
                 500,
             );
@@ -1641,19 +1584,19 @@ class Q12026Controller extends Controller
                 ->first();
 
             if (!$record) {
-                return $this->formatErrorResponse(
+                return PSGCHelper::formatErrorResponse(
                     "Municipality not found",
                     404,
                 );
             }
 
-            return $this->formatResponse(
+            return PSGCHelper::formatResponse(
                 $record,
                 "Municipality retrieved successfully",
             );
         } catch (\Exception $e) {
             Log::error("Municipality Show Error: " . $e->getMessage());
-            return $this->formatErrorResponse(
+            return PSGCHelper::formatErrorResponse(
                 "Failed to retrieve municipality",
                 500,
             );
@@ -1697,17 +1640,17 @@ class Q12026Controller extends Controller
     public function sub_municipalities(Request $request)
     {
         try {
-            $perPage = $request->get("per_page", 15);
+            $perPage = $request->input("per_page", 15);
             $data = Q12026::subMunicipalities()->paginate($perPage);
             return response()->json(
-                $this->formatPaginatedResponse(
+                PSGCHelper::formatPaginatedResponse(
                     $data,
                     "Sub-municipalities retrieved successfully",
                 ),
             );
         } catch (\Exception $e) {
             Log::error("Sub-municipalities Error: " . $e->getMessage());
-            return $this->formatErrorResponse(
+            return PSGCHelper::formatErrorResponse(
                 "Failed to retrieve sub-municipalities",
                 500,
             );
@@ -1753,19 +1696,19 @@ class Q12026Controller extends Controller
                 ->first();
 
             if (!$record) {
-                return $this->formatErrorResponse(
+                return PSGCHelper::formatErrorResponse(
                     "Sub-municipality not found",
                     404,
                 );
             }
 
-            return $this->formatResponse(
+            return PSGCHelper::formatResponse(
                 $record,
                 "Sub-municipality retrieved successfully",
             );
         } catch (\Exception $e) {
             Log::error("Sub-municipality Show Error: " . $e->getMessage());
-            return $this->formatErrorResponse(
+            return PSGCHelper::formatErrorResponse(
                 "Failed to retrieve sub-municipality",
                 500,
             );
@@ -1809,17 +1752,17 @@ class Q12026Controller extends Controller
     public function barangays(Request $request)
     {
         try {
-            $perPage = $request->get("per_page", 15);
+            $perPage = $request->input("per_page", 15);
             $data = Q12026::barangays()->paginate($perPage);
             return response()->json(
-                $this->formatPaginatedResponse(
+                PSGCHelper::formatPaginatedResponse(
                     $data,
                     "Barangays retrieved successfully",
                 ),
             );
         } catch (\Exception $e) {
             Log::error("Barangays Error: " . $e->getMessage());
-            return $this->formatErrorResponse(
+            return PSGCHelper::formatErrorResponse(
                 "Failed to retrieve barangays",
                 500,
             );
@@ -1865,16 +1808,16 @@ class Q12026Controller extends Controller
                 ->first();
 
             if (!$record) {
-                return $this->formatErrorResponse("Barangay not found", 404);
+                return PSGCHelper::formatErrorResponse("Barangay not found", 404);
             }
 
-            return $this->formatResponse(
+            return PSGCHelper::formatResponse(
                 $record,
                 "Barangay retrieved successfully",
             );
         } catch (\Exception $e) {
             Log::error("Barangay Show Error: " . $e->getMessage());
-            return $this->formatErrorResponse(
+            return PSGCHelper::formatErrorResponse(
                 "Failed to retrieve barangay",
                 500,
             );
