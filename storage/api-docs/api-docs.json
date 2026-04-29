@@ -183,338 +183,6 @@
                 ]
             }
         },
-        "/api/regions": {
-            "get": {
-                "tags": [
-                    "Regions"
-                ],
-                "summary": "Get all regions",
-                "description": "Retrieve all regions with pagination",
-                "operationId": "c9e0cc4288a751caf44eaf8b103003d7",
-                "parameters": [
-                    {
-                        "name": "page",
-                        "in": "query",
-                        "description": "Page number",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "default": 1
-                        }
-                    },
-                    {
-                        "name": "per_page",
-                        "in": "query",
-                        "description": "Records per page",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "default": 15
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Regions retrieved successfully"
-                    },
-                    "500": {
-                        "description": "Internal server error"
-                    }
-                }
-            }
-        },
-        "/api/regions/{psgc_code}": {
-            "get": {
-                "tags": [
-                    "Regions"
-                ],
-                "summary": "Get specific region",
-                "description": "Retrieve a specific region by its PSGC code",
-                "operationId": "d7e062fbc6d048aa0b27bdd541d2c45f",
-                "parameters": [
-                    {
-                        "name": "psgc_code",
-                        "in": "path",
-                        "description": "Region PSGC code",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Region retrieved successfully"
-                    },
-                    "404": {
-                        "description": "Region not found"
-                    },
-                    "500": {
-                        "description": "Internal server error"
-                    }
-                }
-            }
-        },
-        "/api/regions/{psgc_code}/provinces": {
-            "get": {
-                "tags": [
-                    "Regions"
-                ],
-                "summary": "Get provinces in a region",
-                "description": "Retrieve all provinces in a specific region",
-                "operationId": "4f09297e0145fa106c5e5d84c8bb01ce",
-                "parameters": [
-                    {
-                        "name": "psgc_code",
-                        "in": "path",
-                        "description": "Region PSGC code",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "page",
-                        "in": "query",
-                        "description": "Page number",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "default": 1
-                        }
-                    },
-                    {
-                        "name": "per_page",
-                        "in": "query",
-                        "description": "Records per page",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "default": 15
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Provinces retrieved successfully"
-                    },
-                    "404": {
-                        "description": "Region not found"
-                    },
-                    "500": {
-                        "description": "Internal server error"
-                    }
-                }
-            }
-        },
-        "/api/regions/{psgc_code}/cities": {
-            "get": {
-                "tags": [
-                    "Regions"
-                ],
-                "summary": "Get cities in a region",
-                "description": "Retrieve all cities in a specific region",
-                "operationId": "495f823fbbd563f297c5fb2ea64ee597",
-                "parameters": [
-                    {
-                        "name": "psgc_code",
-                        "in": "path",
-                        "description": "Region PSGC code",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "page",
-                        "in": "query",
-                        "description": "Page number",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "default": 1
-                        }
-                    },
-                    {
-                        "name": "per_page",
-                        "in": "query",
-                        "description": "Records per page",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "default": 15
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Cities retrieved successfully"
-                    },
-                    "404": {
-                        "description": "Region not found"
-                    },
-                    "500": {
-                        "description": "Internal server error"
-                    }
-                }
-            }
-        },
-        "/api/regions/{psgc_code}/municipalities": {
-            "get": {
-                "tags": [
-                    "Regions"
-                ],
-                "summary": "Get municipalities in a region",
-                "description": "Retrieve all municipalities in a specific region",
-                "operationId": "636aa1d587b113a6ccd3461b3edea16c",
-                "parameters": [
-                    {
-                        "name": "psgc_code",
-                        "in": "path",
-                        "description": "Region PSGC code",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "page",
-                        "in": "query",
-                        "description": "Page number",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "default": 1
-                        }
-                    },
-                    {
-                        "name": "per_page",
-                        "in": "query",
-                        "description": "Records per page",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "default": 15
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Municipalities retrieved successfully"
-                    },
-                    "404": {
-                        "description": "Region not found"
-                    },
-                    "500": {
-                        "description": "Internal server error"
-                    }
-                }
-            }
-        },
-        "/api/regions/{psgc_code}/sub-municipalities": {
-            "get": {
-                "tags": [
-                    "Regions"
-                ],
-                "summary": "Get sub-municipalities in a region",
-                "description": "Retrieve all sub-municipalities in a specific region",
-                "operationId": "b92b74ccdc61143e59adc057a4b09cba",
-                "parameters": [
-                    {
-                        "name": "psgc_code",
-                        "in": "path",
-                        "description": "Region PSGC code",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "page",
-                        "in": "query",
-                        "description": "Page number",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "default": 1
-                        }
-                    },
-                    {
-                        "name": "per_page",
-                        "in": "query",
-                        "description": "Records per page",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "default": 15
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Sub-municipalities retrieved successfully"
-                    },
-                    "404": {
-                        "description": "Region not found"
-                    },
-                    "500": {
-                        "description": "Internal server error"
-                    }
-                }
-            }
-        },
-        "/api/regions/{psgc_code}/barangays": {
-            "get": {
-                "tags": [
-                    "Regions"
-                ],
-                "summary": "Get barangays in a region",
-                "description": "Retrieve all barangays in a specific region",
-                "operationId": "89d7cdc16373ab719e98ebb904974164",
-                "parameters": [
-                    {
-                        "name": "psgc_code",
-                        "in": "path",
-                        "description": "Region PSGC code",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "page",
-                        "in": "query",
-                        "description": "Page number",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "default": 1
-                        }
-                    },
-                    {
-                        "name": "per_page",
-                        "in": "query",
-                        "description": "Records per page",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "default": 15
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Barangays retrieved successfully"
-                    },
-                    "404": {
-                        "description": "Region not found"
-                    },
-                    "500": {
-                        "description": "Internal server error"
-                    }
-                }
-            }
-        },
         "/api/provinces": {
             "get": {
                 "tags": [
@@ -1402,6 +1070,338 @@
                     }
                 }
             }
+        },
+        "/api/regions": {
+            "get": {
+                "tags": [
+                    "Regions"
+                ],
+                "summary": "Get all regions",
+                "description": "Retrieve all regions with pagination",
+                "operationId": "6eed0765960777749cc14db56237ae52",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    },
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "description": "Records per page",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 15
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Regions retrieved successfully"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/regions/{psgc_code}": {
+            "get": {
+                "tags": [
+                    "Regions"
+                ],
+                "summary": "Get specific region",
+                "description": "Retrieve a specific region by its PSGC code",
+                "operationId": "a5f2367622a8eed2a470988f5e788079",
+                "parameters": [
+                    {
+                        "name": "psgc_code",
+                        "in": "path",
+                        "description": "Region PSGC code",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Region retrieved successfully"
+                    },
+                    "404": {
+                        "description": "Region not found"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/regions/{psgc_code}/provinces": {
+            "get": {
+                "tags": [
+                    "Regions"
+                ],
+                "summary": "Get provinces in a region",
+                "description": "Retrieve all provinces in a specific region",
+                "operationId": "2fe9cabb974c84b888573f6502c33989",
+                "parameters": [
+                    {
+                        "name": "psgc_code",
+                        "in": "path",
+                        "description": "Region PSGC code",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    },
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "description": "Records per page",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 15
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Provinces retrieved successfully"
+                    },
+                    "404": {
+                        "description": "Region not found"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/regions/{psgc_code}/cities": {
+            "get": {
+                "tags": [
+                    "Regions"
+                ],
+                "summary": "Get cities in a region",
+                "description": "Retrieve all cities in a specific region",
+                "operationId": "b976981013fea83a83ff998a69ddd4d7",
+                "parameters": [
+                    {
+                        "name": "psgc_code",
+                        "in": "path",
+                        "description": "Region PSGC code",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    },
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "description": "Records per page",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 15
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Cities retrieved successfully"
+                    },
+                    "404": {
+                        "description": "Region not found"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/regions/{psgc_code}/municipalities": {
+            "get": {
+                "tags": [
+                    "Regions"
+                ],
+                "summary": "Get municipalities in a region",
+                "description": "Retrieve all municipalities in a specific region",
+                "operationId": "51a03747b15f341375f28efdd1fad12b",
+                "parameters": [
+                    {
+                        "name": "psgc_code",
+                        "in": "path",
+                        "description": "Region PSGC code",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    },
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "description": "Records per page",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 15
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Municipalities retrieved successfully"
+                    },
+                    "404": {
+                        "description": "Region not found"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/regions/{psgc_code}/sub-municipalities": {
+            "get": {
+                "tags": [
+                    "Regions"
+                ],
+                "summary": "Get sub-municipalities in a region",
+                "description": "Retrieve all sub-municipalities in a specific region",
+                "operationId": "ca91de1288ff586e8fd8b96af980014d",
+                "parameters": [
+                    {
+                        "name": "psgc_code",
+                        "in": "path",
+                        "description": "Region PSGC code",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    },
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "description": "Records per page",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 15
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sub-municipalities retrieved successfully"
+                    },
+                    "404": {
+                        "description": "Region not found"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/regions/{psgc_code}/barangays": {
+            "get": {
+                "tags": [
+                    "Regions"
+                ],
+                "summary": "Get barangays in a region",
+                "description": "Retrieve all barangays in a specific region",
+                "operationId": "e502df12608e6e7a6be912a6910a21fe",
+                "parameters": [
+                    {
+                        "name": "psgc_code",
+                        "in": "path",
+                        "description": "Region PSGC code",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    },
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "description": "Records per page",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 15
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Barangays retrieved successfully"
+                    },
+                    "404": {
+                        "description": "Region not found"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -1541,10 +1541,6 @@
             "description": "Authentication"
         },
         {
-            "name": "Regions",
-            "description": "Regions"
-        },
-        {
             "name": "Provinces",
             "description": "Provinces"
         },
@@ -1571,6 +1567,10 @@
         {
             "name": "PSGC",
             "description": "PSGC"
+        },
+        {
+            "name": "Regions",
+            "description": "Regions"
         }
     ]
 }
