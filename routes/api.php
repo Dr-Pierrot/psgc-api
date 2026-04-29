@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\api\AuthenticationController;
+use App\Http\Controllers\API\PSGC_new\Q12026\PSGCController;
 use App\Http\Controllers\API\PSGC_new\Q12026Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -15,11 +16,11 @@ Route::post("login", [AuthenticationController::class, "login"])->name(
 
 // --------------- PSGC Data Routes ----------------//
 // Main PSGC endpoints
-Route::get("psgc", [Q12026Controller::class, "index"])->name("api.psgc");
-Route::get("psgc/search", [Q12026Controller::class, "search"])->name(
+Route::get("psgc", [PSGCController::class, "index"])->name("api.psgc");
+Route::get("psgc/search", [PSGCController::class, "search"])->name(
     "api.psgc.search",
 );
-Route::get("psgc/{psgc_code}", [Q12026Controller::class, "show"])->name(
+Route::get("psgc/{psgc_code}", [PSGCController::class, "show"])->name(
     "api.psgc.show",
 );
 

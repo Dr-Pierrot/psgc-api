@@ -183,160 +183,6 @@
                 ]
             }
         },
-        "/api/psgc": {
-            "get": {
-                "tags": [
-                    "PSGC"
-                ],
-                "summary": "List all PSGC records",
-                "description": "Retrieve all Philippine Standard Geographic Code records with pagination",
-                "operationId": "ec83b0634696782fe3e3bc2b346f6021",
-                "parameters": [
-                    {
-                        "name": "page",
-                        "in": "query",
-                        "description": "Page number",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "default": 1
-                        }
-                    },
-                    {
-                        "name": "per_page",
-                        "in": "query",
-                        "description": "Records per page",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "default": 15
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Records retrieved successfully",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "response_code": {
-                                            "type": "integer",
-                                            "example": 200
-                                        },
-                                        "status": {
-                                            "type": "string",
-                                            "example": "success"
-                                        },
-                                        "message": {
-                                            "type": "string",
-                                            "example": "Data retrieved successfully"
-                                        },
-                                        "data": {
-                                            "type": "array",
-                                            "items": {
-                                                "type": "object"
-                                            }
-                                        },
-                                        "pagination": {
-                                            "type": "object"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error"
-                    }
-                }
-            }
-        },
-        "/api/psgc/search": {
-            "get": {
-                "tags": [
-                    "PSGC"
-                ],
-                "summary": "Search PSGC records",
-                "description": "Search PSGC records by name or PSGC code",
-                "operationId": "df99a5a6b070f5542f2e224f5f1af8b3",
-                "parameters": [
-                    {
-                        "name": "q",
-                        "in": "query",
-                        "description": "Search query (name or PSGC code)",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "page",
-                        "in": "query",
-                        "description": "Page number",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "default": 1
-                        }
-                    },
-                    {
-                        "name": "per_page",
-                        "in": "query",
-                        "description": "Records per page",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "default": 15
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Search results retrieved successfully"
-                    },
-                    "400": {
-                        "description": "Search query is required"
-                    },
-                    "500": {
-                        "description": "Internal server error"
-                    }
-                }
-            }
-        },
-        "/api/psgc/{psgc_code}": {
-            "get": {
-                "tags": [
-                    "PSGC"
-                ],
-                "summary": "Get specific PSGC record",
-                "description": "Retrieve a specific PSGC record by its code",
-                "operationId": "3bff6ec74d9424659c37e25ed5638d1d",
-                "parameters": [
-                    {
-                        "name": "psgc_code",
-                        "in": "path",
-                        "description": "PSGC code",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Record retrieved successfully"
-                    },
-                    "404": {
-                        "description": "Record not found"
-                    },
-                    "500": {
-                        "description": "Internal server error"
-                    }
-                }
-            }
-        },
         "/api/geographic-levels": {
             "get": {
                 "tags": [
@@ -1402,6 +1248,160 @@
                     }
                 }
             }
+        },
+        "/api/psgc": {
+            "get": {
+                "tags": [
+                    "PSGC"
+                ],
+                "summary": "List all PSGC records",
+                "description": "Retrieve all Philippine Standard Geographic Code records with pagination",
+                "operationId": "8e1a795976b620650e2d0bc794d049a7",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    },
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "description": "Records per page",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 15
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Records retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "response_code": {
+                                            "type": "integer",
+                                            "example": 200
+                                        },
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Data retrieved successfully"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object"
+                                            }
+                                        },
+                                        "pagination": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/psgc/search": {
+            "get": {
+                "tags": [
+                    "PSGC"
+                ],
+                "summary": "Search PSGC records",
+                "description": "Search PSGC records by name or PSGC code",
+                "operationId": "697bb8acfaaa17e2f983e152f971ca16",
+                "parameters": [
+                    {
+                        "name": "q",
+                        "in": "query",
+                        "description": "Search query (name or PSGC code)",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    },
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "description": "Records per page",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 15
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Search results retrieved successfully"
+                    },
+                    "400": {
+                        "description": "Search query is required"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/psgc/{psgc_code}": {
+            "get": {
+                "tags": [
+                    "PSGC"
+                ],
+                "summary": "Get specific PSGC record",
+                "description": "Retrieve a specific PSGC record by its code",
+                "operationId": "98b75f2a3bf56f85d57756f563fe4c9b",
+                "parameters": [
+                    {
+                        "name": "psgc_code",
+                        "in": "path",
+                        "description": "PSGC code",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Record retrieved successfully"
+                    },
+                    "404": {
+                        "description": "Record not found"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -1541,10 +1541,6 @@
             "description": "Authentication"
         },
         {
-            "name": "PSGC",
-            "description": "PSGC"
-        },
-        {
             "name": "Classification",
             "description": "Classification"
         },
@@ -1571,6 +1567,10 @@
         {
             "name": "Barangays",
             "description": "Barangays"
+        },
+        {
+            "name": "PSGC",
+            "description": "PSGC"
         }
     ]
 }

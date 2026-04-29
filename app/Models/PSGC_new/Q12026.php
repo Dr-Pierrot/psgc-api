@@ -48,7 +48,7 @@ use OpenApi\Attributes as OA;
 )]
 class Q12026 extends Model
 {
-    protected $table = "psgcs";
+    protected $table = "q1-2026";
     protected $primaryKey = "id";
     public $timestamps = true;
 
