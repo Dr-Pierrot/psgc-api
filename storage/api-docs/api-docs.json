@@ -183,78 +183,6 @@
                 ]
             }
         },
-        "/api/sub-municipalities": {
-            "get": {
-                "tags": [
-                    "Sub-Municipalities"
-                ],
-                "summary": "Get all sub-municipalities",
-                "description": "Retrieve all sub-municipalities with pagination",
-                "operationId": "cb6f3113b5e6f30fa3a58077cf782635",
-                "parameters": [
-                    {
-                        "name": "page",
-                        "in": "query",
-                        "description": "Page number",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "default": 1
-                        }
-                    },
-                    {
-                        "name": "per_page",
-                        "in": "query",
-                        "description": "Records per page",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "default": 15
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Sub-municipalities retrieved successfully"
-                    },
-                    "500": {
-                        "description": "Internal server error"
-                    }
-                }
-            }
-        },
-        "/api/sub-municipalities/{psgc_code}": {
-            "get": {
-                "tags": [
-                    "Sub-Municipalities"
-                ],
-                "summary": "Get specific sub-municipality",
-                "description": "Retrieve a specific sub-municipality by its PSGC code",
-                "operationId": "532219d1f14177b5d9f5cf8610848396",
-                "parameters": [
-                    {
-                        "name": "psgc_code",
-                        "in": "path",
-                        "description": "Sub-municipality PSGC code",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Sub-municipality retrieved successfully"
-                    },
-                    "404": {
-                        "description": "Sub-municipality not found"
-                    },
-                    "500": {
-                        "description": "Internal server error"
-                    }
-                }
-            }
-        },
         "/api/barangays": {
             "get": {
                 "tags": [
@@ -1402,6 +1330,78 @@
                     }
                 }
             }
+        },
+        "/api/sub-municipalities": {
+            "get": {
+                "tags": [
+                    "Sub-Municipalities"
+                ],
+                "summary": "Get all sub-municipalities",
+                "description": "Retrieve all sub-municipalities with pagination",
+                "operationId": "4c688d676cc4a38572e0a07d33a11c1a",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    },
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "description": "Records per page",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 15
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sub-municipalities retrieved successfully"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/sub-municipalities/{psgc_code}": {
+            "get": {
+                "tags": [
+                    "Sub-Municipalities"
+                ],
+                "summary": "Get specific sub-municipality",
+                "description": "Retrieve a specific sub-municipality by its PSGC code",
+                "operationId": "bc5277ab38b74383f61a9996c5b4a1ed",
+                "parameters": [
+                    {
+                        "name": "psgc_code",
+                        "in": "path",
+                        "description": "Sub-municipality PSGC code",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sub-municipality retrieved successfully"
+                    },
+                    "404": {
+                        "description": "Sub-municipality not found"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -1541,10 +1541,6 @@
             "description": "Authentication"
         },
         {
-            "name": "Sub-Municipalities",
-            "description": "Sub-Municipalities"
-        },
-        {
             "name": "Barangays",
             "description": "Barangays"
         },
@@ -1571,6 +1567,10 @@
         {
             "name": "Regions",
             "description": "Regions"
+        },
+        {
+            "name": "Sub-Municipalities",
+            "description": "Sub-Municipalities"
         }
     ]
 }

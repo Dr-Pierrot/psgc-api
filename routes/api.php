@@ -7,6 +7,7 @@ use App\Http\Controllers\API\PSGC_new\Q12026\MunicipalityController;
 use App\Http\Controllers\API\PSGC_new\Q12026\ProvinceController;
 use App\Http\Controllers\API\PSGC_new\Q12026\PSGCController;
 use App\Http\Controllers\API\PSGC_new\Q12026\RegionController;
+use App\Http\Controllers\API\PSGC_new\Q12026\SubMunicipalityController;
 use App\Http\Controllers\API\PSGC_new\Q12026Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -55,8 +56,8 @@ Route::get("municipalities", [MunicipalityController::class, "municipalities"])-
 Route::get("municipalities/{psgc_code}", [MunicipalityController::class,"municipality",])->name("api.municipality");
 
 // Sub-Municipality endpoints
-Route::get("sub-municipalities", [Q12026Controller::class,"sub_municipalities",])->name("api.sub_municipalities");
-Route::get("sub-municipalities/{psgc_code}", [Q12026Controller::class,"sub_municipality",])->name("api.sub_municipality");
+Route::get("sub-municipalities", [SubMunicipalityController::class,"sub_municipalities",])->name("api.sub_municipalities");
+Route::get("sub-municipalities/{psgc_code}", [SubMunicipalityController::class,"sub_municipality",])->name("api.sub_municipality");
 
 // Barangay endpoints
 Route::get("barangays", [Q12026Controller::class, "barangays"])->name("api.barangays",);
