@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\api\AuthenticationController;
+use App\Http\Controllers\API\PSGC_new\Q12026\BarangayController;
 use App\Http\Controllers\API\PSGC_new\Q12026\CityController;
 use App\Http\Controllers\API\PSGC_new\Q12026\ClassificationController;
 use App\Http\Controllers\API\PSGC_new\Q12026\MunicipalityController;
@@ -60,13 +61,8 @@ Route::get("sub-municipalities", [SubMunicipalityController::class,"sub_municipa
 Route::get("sub-municipalities/{psgc_code}", [SubMunicipalityController::class,"sub_municipality",])->name("api.sub_municipality");
 
 // Barangay endpoints
-Route::get("barangays", [Q12026Controller::class, "barangays"])->name("api.barangays",);
-Route::get("barangays/{psgc_code}", [Q12026Controller::class,"barangay",])->name("api.barangay");
-
-// Legacy endpoints for backward compatibility
-Route::get("geographic_level", [Q12026Controller::class,"geographic_level",])->name("api.geographic_level");
-Route::get("city_classification", [Q12026Controller::class,"city_classification",])->name("api.city_classification");
-Route::get("income_classification", [Q12026Controller::class,"income_classification",])->name("api.income_classification");
+Route::get("barangays", [BarangayController::class, "barangays"])->name("api.barangays",);
+Route::get("barangays/{psgc_code}", [BarangayController::class,"barangay",])->name("api.barangay");
 
 // Protected routes
 Route::middleware("auth:sanctum")->group(function () {

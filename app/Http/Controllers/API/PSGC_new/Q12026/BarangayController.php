@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\API\PSGC_new;
+namespace App\Http\Controllers\API\PSGC_new\Q12026;
 
 use App\Http\Controllers\Controller;
 use App\Models\PSGC_new\Q12026;
@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use OpenApi\Attributes as OA;
 
-class Q12026Controller extends Controller
+class BarangayController extends Controller
 {
     #[
         OA\Get(
@@ -96,7 +96,7 @@ class Q12026Controller extends Controller
             ],
         ),
     ]
-    public function barangay($psgcCode)
+    public function barangay(string $psgcCode)
     {
         try {
             $record = Q12026::barangays()
@@ -118,21 +118,5 @@ class Q12026Controller extends Controller
                 500,
             );
         }
-    }
-
-    // Legacy methods kept for backward compatibility
-    public function geographic_level()
-    {
-        return $this->geographic_levels();
-    }
-
-    public function city_classification()
-    {
-        return $this->city_classifications();
-    }
-
-    public function income_classification()
-    {
-        return $this->income_classifications();
     }
 }

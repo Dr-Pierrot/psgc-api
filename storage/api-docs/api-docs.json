@@ -190,7 +190,7 @@
                 ],
                 "summary": "Get all barangays",
                 "description": "Retrieve all barangays with pagination",
-                "operationId": "1ec2498e2cde2f6f05497c4f1da6d093",
+                "operationId": "667a722ace90a3dae8fb42748f499788",
                 "parameters": [
                     {
                         "name": "page",
@@ -230,7 +230,7 @@
                 ],
                 "summary": "Get specific barangay",
                 "description": "Retrieve a specific barangay by its PSGC code",
-                "operationId": "a5c6bea248eacaba064c243b1e4002c5",
+                "operationId": "311d89473da355ed25c42115345937f7",
                 "parameters": [
                     {
                         "name": "psgc_code",
