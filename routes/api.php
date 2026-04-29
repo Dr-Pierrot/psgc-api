@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\api\AuthenticationController;
+use App\Http\Controllers\API\PSGC_new\Q12026\CityController;
 use App\Http\Controllers\API\PSGC_new\Q12026\ClassificationController;
 use App\Http\Controllers\API\PSGC_new\Q12026\ProvinceController;
 use App\Http\Controllers\API\PSGC_new\Q12026\PSGCController;
@@ -41,12 +42,12 @@ Route::get("provinces/{psgc_code}/cities", [ProvinceController::class,"province_
 Route::get("provinces/{psgc_code}/barangays", [ProvinceController::class,"province_barangays",])->name("api.province.barangays");
 
 // City endpoints
-Route::get("cities", [Q12026Controller::class, "cities"])->name("api.cities");
-Route::get("cities/{psgc_code}", [Q12026Controller::class, "city"])->name("api.city");
-Route::get("cities/{psgc_code}/barangays", [Q12026Controller::class,"municity_barangays",])->name("api.city.barangays");
-Route::get("cities/classification/highly-urbanized", [Q12026Controller::class,"highly_urbanized_cities",])->name("api.cities.huc");
-Route::get("cities/classification/component", [Q12026Controller::class,"component_cities"])->name("api.cities.component");
-Route::get("cities/classification/independent-component", [Q12026Controller::class,"independent_component_cities",])->name("api.cities.independent-component");
+Route::get("cities", [CityController::class, "cities"])->name("api.cities");
+Route::get("cities/{psgc_code}", [CityController::class, "city"])->name("api.city");
+Route::get("cities/{psgc_code}/barangays", [CityController::class,"municity_barangays",])->name("api.city.barangays");
+Route::get("cities/classification/highly-urbanized", [CityController::class,"highly_urbanized_cities",])->name("api.cities.huc");
+Route::get("cities/classification/component", [CityController::class,"component_cities"])->name("api.cities.component");
+Route::get("cities/classification/independent-component", [CityController::class,"independent_component_cities",])->name("api.cities.independent-component");
 
 // Municipality endpoints
 Route::get("municipalities", [Q12026Controller::class, "municipalities"])->name("api.municipalities",);

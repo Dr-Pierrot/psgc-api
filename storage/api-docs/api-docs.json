@@ -183,250 +183,6 @@
                 ]
             }
         },
-        "/api/cities/{psgc_code}/barangays": {
-            "get": {
-                "tags": [
-                    "Cities"
-                ],
-                "summary": "Get barangays in a city/municipality",
-                "description": "Retrieve all barangays in a specific city or municipality using PSGC code",
-                "operationId": "98e8915a81e65e1e6da22dba444ede32",
-                "parameters": [
-                    {
-                        "name": "psgc_code",
-                        "in": "path",
-                        "description": "City/Municipality PSGC code",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "page",
-                        "in": "query",
-                        "description": "Page number",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "default": 1
-                        }
-                    },
-                    {
-                        "name": "per_page",
-                        "in": "query",
-                        "description": "Records per page",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "default": 15
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Barangays retrieved successfully"
-                    },
-                    "404": {
-                        "description": "City/Municipality not found"
-                    },
-                    "500": {
-                        "description": "Internal server error"
-                    }
-                }
-            }
-        },
-        "/api/cities": {
-            "get": {
-                "tags": [
-                    "Cities"
-                ],
-                "summary": "Get all cities",
-                "description": "Retrieve all cities with pagination",
-                "operationId": "16205679ef4b5fa11377be0b74d409b5",
-                "parameters": [
-                    {
-                        "name": "page",
-                        "in": "query",
-                        "description": "Page number",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "default": 1
-                        }
-                    },
-                    {
-                        "name": "per_page",
-                        "in": "query",
-                        "description": "Records per page",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "default": 15
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Cities retrieved successfully"
-                    },
-                    "500": {
-                        "description": "Internal server error"
-                    }
-                }
-            }
-        },
-        "/api/cities/{psgc_code}": {
-            "get": {
-                "tags": [
-                    "Cities"
-                ],
-                "summary": "Get specific city",
-                "description": "Retrieve a specific city by its PSGC code",
-                "operationId": "8a1e1f9987465838c6f73673563a6569",
-                "parameters": [
-                    {
-                        "name": "psgc_code",
-                        "in": "path",
-                        "description": "City PSGC code",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "City retrieved successfully"
-                    },
-                    "404": {
-                        "description": "City not found"
-                    },
-                    "500": {
-                        "description": "Internal server error"
-                    }
-                }
-            }
-        },
-        "/api/cities/classification/highly-urbanized": {
-            "get": {
-                "tags": [
-                    "Cities"
-                ],
-                "summary": "Get highly urbanized cities",
-                "description": "Retrieve all highly urbanized cities",
-                "operationId": "cc9490a8100944a577114478bd4768bf",
-                "parameters": [
-                    {
-                        "name": "page",
-                        "in": "query",
-                        "description": "Page number",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "default": 1
-                        }
-                    },
-                    {
-                        "name": "per_page",
-                        "in": "query",
-                        "description": "Records per page",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "default": 15
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Highly urbanized cities retrieved successfully"
-                    },
-                    "500": {
-                        "description": "Internal server error"
-                    }
-                }
-            }
-        },
-        "/api/cities/classification/component": {
-            "get": {
-                "tags": [
-                    "Cities"
-                ],
-                "summary": "Get component cities",
-                "description": "Retrieve all component cities",
-                "operationId": "57e4bd4de0a713f0c0f60a9c69f97bd4",
-                "parameters": [
-                    {
-                        "name": "page",
-                        "in": "query",
-                        "description": "Page number",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "default": 1
-                        }
-                    },
-                    {
-                        "name": "per_page",
-                        "in": "query",
-                        "description": "Records per page",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "default": 15
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Component cities retrieved successfully"
-                    },
-                    "500": {
-                        "description": "Internal server error"
-                    }
-                }
-            }
-        },
-        "/api/cities/classification/independent-component": {
-            "get": {
-                "tags": [
-                    "Cities"
-                ],
-                "summary": "Get independent component cities",
-                "description": "Retrieve all independent component cities",
-                "operationId": "2794299518213ecf4a26af74aab78289",
-                "parameters": [
-                    {
-                        "name": "page",
-                        "in": "query",
-                        "description": "Page number",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "default": 1
-                        }
-                    },
-                    {
-                        "name": "per_page",
-                        "in": "query",
-                        "description": "Records per page",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "default": 15
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Independent component cities retrieved successfully"
-                    },
-                    "500": {
-                        "description": "Internal server error"
-                    }
-                }
-            }
-        },
         "/api/municipalities": {
             "get": {
                 "tags": [
@@ -636,6 +392,250 @@
                     },
                     "404": {
                         "description": "Barangay not found"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/cities/{psgc_code}/barangays": {
+            "get": {
+                "tags": [
+                    "Cities"
+                ],
+                "summary": "Get barangays in a city/municipality",
+                "description": "Retrieve all barangays in a specific city or municipality using PSGC code",
+                "operationId": "cf136533d69fa6088f2ee4da2d5cafb5",
+                "parameters": [
+                    {
+                        "name": "psgc_code",
+                        "in": "path",
+                        "description": "City/Municipality PSGC code",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    },
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "description": "Records per page",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 15
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Barangays retrieved successfully"
+                    },
+                    "404": {
+                        "description": "City/Municipality not found"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/cities": {
+            "get": {
+                "tags": [
+                    "Cities"
+                ],
+                "summary": "Get all cities",
+                "description": "Retrieve all cities with pagination",
+                "operationId": "84ddddfc328caf8026a7c89512ce5fc9",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    },
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "description": "Records per page",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 15
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Cities retrieved successfully"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/cities/{psgc_code}": {
+            "get": {
+                "tags": [
+                    "Cities"
+                ],
+                "summary": "Get specific city",
+                "description": "Retrieve a specific city by its PSGC code",
+                "operationId": "ab58ef9d0a0289359146d887966e86dc",
+                "parameters": [
+                    {
+                        "name": "psgc_code",
+                        "in": "path",
+                        "description": "City PSGC code",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "City retrieved successfully"
+                    },
+                    "404": {
+                        "description": "City not found"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/cities/classification/highly-urbanized": {
+            "get": {
+                "tags": [
+                    "Cities"
+                ],
+                "summary": "Get highly urbanized cities",
+                "description": "Retrieve all highly urbanized cities",
+                "operationId": "f4fd4babe9ccc3f2f84f0ef1102ec56c",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    },
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "description": "Records per page",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 15
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Highly urbanized cities retrieved successfully"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/cities/classification/component": {
+            "get": {
+                "tags": [
+                    "Cities"
+                ],
+                "summary": "Get component cities",
+                "description": "Retrieve all component cities",
+                "operationId": "b1dbff89cd74ab76096d4bd6616f3e74",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    },
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "description": "Records per page",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 15
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Component cities retrieved successfully"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/cities/classification/independent-component": {
+            "get": {
+                "tags": [
+                    "Cities"
+                ],
+                "summary": "Get independent component cities",
+                "description": "Retrieve all independent component cities",
+                "operationId": "c479c58e5ca61be4cc865c8dcc2a2b00",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    },
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "description": "Records per page",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 15
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Independent component cities retrieved successfully"
                     },
                     "500": {
                         "description": "Internal server error"
@@ -1541,10 +1541,6 @@
             "description": "Authentication"
         },
         {
-            "name": "Cities",
-            "description": "Cities"
-        },
-        {
             "name": "Municipalities",
             "description": "Municipalities"
         },
@@ -1555,6 +1551,10 @@
         {
             "name": "Barangays",
             "description": "Barangays"
+        },
+        {
+            "name": "Cities",
+            "description": "Cities"
         },
         {
             "name": "Classification",
