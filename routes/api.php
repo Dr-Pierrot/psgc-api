@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\api\AuthenticationController;
 use App\Http\Controllers\API\PSGC_new\Q12026\ClassificationController;
+use App\Http\Controllers\API\PSGC_new\Q12026\ProvinceController;
 use App\Http\Controllers\API\PSGC_new\Q12026\PSGCController;
 use App\Http\Controllers\API\PSGC_new\Q12026\RegionController;
 use App\Http\Controllers\API\PSGC_new\Q12026Controller;
@@ -34,10 +35,10 @@ Route::get("regions/{psgc_code}/sub-municipalities", [RegionController::class,"r
 Route::get("regions/{psgc_code}/barangays", [RegionController::class,"region_barangays",])->name("api.region.barangays");
 
 // Province endpoints
-Route::get("provinces", [Q12026Controller::class, "provinces"])->name("api.provinces");
-Route::get("provinces/{psgc_code}", [Q12026Controller::class,"province",])->name("api.province");
-Route::get("provinces/{psgc_code}/cities", [Q12026Controller::class,"province_cities",])->name("api.province.cities");
-Route::get("provinces/{psgc_code}/barangays", [Q12026Controller::class,"province_barangays",])->name("api.province.barangays");
+Route::get("provinces", [ProvinceController::class, "provinces"])->name("api.provinces");
+Route::get("provinces/{psgc_code}", [ProvinceController::class,"province",])->name("api.province");
+Route::get("provinces/{psgc_code}/cities", [ProvinceController::class,"province_cities",])->name("api.province.cities");
+Route::get("provinces/{psgc_code}/barangays", [ProvinceController::class,"province_barangays",])->name("api.province.barangays");
 
 // City endpoints
 Route::get("cities", [Q12026Controller::class, "cities"])->name("api.cities");

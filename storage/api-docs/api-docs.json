@@ -183,182 +183,6 @@
                 ]
             }
         },
-        "/api/provinces": {
-            "get": {
-                "tags": [
-                    "Provinces"
-                ],
-                "summary": "Get all provinces",
-                "description": "Retrieve all provinces with pagination",
-                "operationId": "56799d5f050d3cdfe563c41706982a0b",
-                "parameters": [
-                    {
-                        "name": "page",
-                        "in": "query",
-                        "description": "Page number",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "default": 1
-                        }
-                    },
-                    {
-                        "name": "per_page",
-                        "in": "query",
-                        "description": "Records per page",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "default": 15
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Provinces retrieved successfully"
-                    },
-                    "500": {
-                        "description": "Internal server error"
-                    }
-                }
-            }
-        },
-        "/api/provinces/{psgc_code}": {
-            "get": {
-                "tags": [
-                    "Provinces"
-                ],
-                "summary": "Get specific province",
-                "description": "Retrieve a specific province by its PSGC code",
-                "operationId": "6be139e7f1d824109a0ad05a1693889f",
-                "parameters": [
-                    {
-                        "name": "psgc_code",
-                        "in": "path",
-                        "description": "Province PSGC code",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Province retrieved successfully"
-                    },
-                    "404": {
-                        "description": "Province not found"
-                    },
-                    "500": {
-                        "description": "Internal server error"
-                    }
-                }
-            }
-        },
-        "/api/provinces/{psgc_code}/cities": {
-            "get": {
-                "tags": [
-                    "Provinces"
-                ],
-                "summary": "Get cities/municipalities in a province",
-                "description": "Retrieve all cities and municipalities in a specific province using PSGC code",
-                "operationId": "99e8839b7c725acc0124186ee299dcba",
-                "parameters": [
-                    {
-                        "name": "psgc_code",
-                        "in": "path",
-                        "description": "Province PSGC code",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "page",
-                        "in": "query",
-                        "description": "Page number",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "default": 1
-                        }
-                    },
-                    {
-                        "name": "per_page",
-                        "in": "query",
-                        "description": "Records per page",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "default": 15
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Cities/Municipalities retrieved successfully"
-                    },
-                    "404": {
-                        "description": "Province not found"
-                    },
-                    "500": {
-                        "description": "Internal server error"
-                    }
-                }
-            }
-        },
-        "/api/provinces/{psgc_code}/barangays": {
-            "get": {
-                "tags": [
-                    "Provinces"
-                ],
-                "summary": "Get barangays in a province",
-                "description": "Retrieve all barangays in a specific province using PSGC code",
-                "operationId": "49574b4b6c45b7812faf4a22f70f417f",
-                "parameters": [
-                    {
-                        "name": "psgc_code",
-                        "in": "path",
-                        "description": "Province PSGC code",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "page",
-                        "in": "query",
-                        "description": "Page number",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "default": 1
-                        }
-                    },
-                    {
-                        "name": "per_page",
-                        "in": "query",
-                        "description": "Records per page",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "default": 15
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Barangays retrieved successfully"
-                    },
-                    "404": {
-                        "description": "Province not found"
-                    },
-                    "500": {
-                        "description": "Internal server error"
-                    }
-                }
-            }
-        },
         "/api/cities/{psgc_code}/barangays": {
             "get": {
                 "tags": [
@@ -1071,6 +895,182 @@
                 }
             }
         },
+        "/api/provinces": {
+            "get": {
+                "tags": [
+                    "Provinces"
+                ],
+                "summary": "Get all provinces",
+                "description": "Retrieve all provinces with pagination",
+                "operationId": "09f43d72be0897d1d55eea4d85fc2105",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    },
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "description": "Records per page",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 15
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Provinces retrieved successfully"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/provinces/{psgc_code}": {
+            "get": {
+                "tags": [
+                    "Provinces"
+                ],
+                "summary": "Get specific province",
+                "description": "Retrieve a specific province by its PSGC code",
+                "operationId": "62038d6996293dda0834b45d1040dae5",
+                "parameters": [
+                    {
+                        "name": "psgc_code",
+                        "in": "path",
+                        "description": "Province PSGC code",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Province retrieved successfully"
+                    },
+                    "404": {
+                        "description": "Province not found"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/provinces/{psgc_code}/cities": {
+            "get": {
+                "tags": [
+                    "Provinces"
+                ],
+                "summary": "Get cities/municipalities in a province",
+                "description": "Retrieve all cities and municipalities in a specific province using PSGC code",
+                "operationId": "dc145d43c09f1d8b5a3236d1494826f7",
+                "parameters": [
+                    {
+                        "name": "psgc_code",
+                        "in": "path",
+                        "description": "Province PSGC code",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    },
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "description": "Records per page",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 15
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Cities/Municipalities retrieved successfully"
+                    },
+                    "404": {
+                        "description": "Province not found"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/provinces/{psgc_code}/barangays": {
+            "get": {
+                "tags": [
+                    "Provinces"
+                ],
+                "summary": "Get barangays in a province",
+                "description": "Retrieve all barangays in a specific province using PSGC code",
+                "operationId": "3ae46d23b321a04d7564bf1a38277a0f",
+                "parameters": [
+                    {
+                        "name": "psgc_code",
+                        "in": "path",
+                        "description": "Province PSGC code",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    },
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "description": "Records per page",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 15
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Barangays retrieved successfully"
+                    },
+                    "404": {
+                        "description": "Province not found"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
         "/api/regions": {
             "get": {
                 "tags": [
@@ -1541,10 +1541,6 @@
             "description": "Authentication"
         },
         {
-            "name": "Provinces",
-            "description": "Provinces"
-        },
-        {
             "name": "Cities",
             "description": "Cities"
         },
@@ -1567,6 +1563,10 @@
         {
             "name": "PSGC",
             "description": "PSGC"
+        },
+        {
+            "name": "Provinces",
+            "description": "Provinces"
         },
         {
             "name": "Regions",
