@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\api\AuthenticationController;
+use App\Http\Controllers\API\PSGC_new\Q12026\ClassificationController;
 use App\Http\Controllers\API\PSGC_new\Q12026\PSGCController;
 use App\Http\Controllers\API\PSGC_new\Q12026Controller;
 use Illuminate\Http\Request;
@@ -26,19 +27,19 @@ Route::get("psgc/{psgc_code}", [PSGCController::class, "show"])->name(
 
 // Classification endpoints
 Route::get("geographic-levels", [
-    Q12026Controller::class,
+    ClassificationController::class,
     "geographic_levels",
 ])->name("api.geographic_levels");
 Route::get("city-classifications", [
-    Q12026Controller::class,
+    ClassificationController::class,
     "city_classifications",
 ])->name("api.city_classifications");
 Route::get("income-classifications", [
-    Q12026Controller::class,
+    ClassificationController::class,
     "income_classifications",
 ])->name("api.income_classifications");
 Route::get("urban-rural-classifications", [
-    Q12026Controller::class,
+    ClassificationController::class,
     "urban_rural_classifications",
 ])->name("api.urban_rural_classifications");
 

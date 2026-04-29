@@ -183,104 +183,6 @@
                 ]
             }
         },
-        "/api/geographic-levels": {
-            "get": {
-                "tags": [
-                    "Classification"
-                ],
-                "summary": "Get all geographic levels",
-                "description": "Retrieve all distinct geographic levels",
-                "operationId": "f42a0c878c0b1ba9af09539c2f7f2515",
-                "responses": {
-                    "200": {
-                        "description": "Geographic levels retrieved successfully",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "response_code": {
-                                            "type": "integer",
-                                            "example": 200
-                                        },
-                                        "status": {
-                                            "type": "string",
-                                            "example": "success"
-                                        },
-                                        "message": {
-                                            "type": "string"
-                                        },
-                                        "data": {
-                                            "type": "array",
-                                            "items": {
-                                                "type": "string"
-                                            }
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error"
-                    }
-                }
-            }
-        },
-        "/api/city-classifications": {
-            "get": {
-                "tags": [
-                    "Classification"
-                ],
-                "summary": "Get all city classifications",
-                "description": "Retrieve all distinct city classifications",
-                "operationId": "f273522e88ddf29cb6caa48f12f1815f",
-                "responses": {
-                    "200": {
-                        "description": "City classifications retrieved successfully"
-                    },
-                    "500": {
-                        "description": "Internal server error"
-                    }
-                }
-            }
-        },
-        "/api/income-classifications": {
-            "get": {
-                "tags": [
-                    "Classification"
-                ],
-                "summary": "Get all income classifications",
-                "description": "Retrieve all distinct income classifications",
-                "operationId": "9be44b4ce4fcebad86a95a0dfc14deec",
-                "responses": {
-                    "200": {
-                        "description": "Income classifications retrieved successfully"
-                    },
-                    "500": {
-                        "description": "Internal server error"
-                    }
-                }
-            }
-        },
-        "/api/urban-rural-classifications": {
-            "get": {
-                "tags": [
-                    "Classification"
-                ],
-                "summary": "Get all urban/rural classifications",
-                "description": "Retrieve all distinct urban/rural classifications",
-                "operationId": "894f04f5c6ea0dc63d581b399c298f1d",
-                "responses": {
-                    "200": {
-                        "description": "Urban/rural classifications retrieved successfully"
-                    },
-                    "500": {
-                        "description": "Internal server error"
-                    }
-                }
-            }
-        },
         "/api/regions": {
             "get": {
                 "tags": [
@@ -1249,6 +1151,104 @@
                 }
             }
         },
+        "/api/geographic-levels": {
+            "get": {
+                "tags": [
+                    "Classification"
+                ],
+                "summary": "Get all geographic levels",
+                "description": "Retrieve all distinct geographic levels",
+                "operationId": "c06dcd75c4465968e86b6f6fac579db8",
+                "responses": {
+                    "200": {
+                        "description": "Geographic levels retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "response_code": {
+                                            "type": "integer",
+                                            "example": 200
+                                        },
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/city-classifications": {
+            "get": {
+                "tags": [
+                    "Classification"
+                ],
+                "summary": "Get all city classifications",
+                "description": "Retrieve all distinct city classifications",
+                "operationId": "d774f60cc988f8f7eb1949b8b94c0ce7",
+                "responses": {
+                    "200": {
+                        "description": "City classifications retrieved successfully"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/income-classifications": {
+            "get": {
+                "tags": [
+                    "Classification"
+                ],
+                "summary": "Get all income classifications",
+                "description": "Retrieve all distinct income classifications",
+                "operationId": "95cd84bc8efa33995a1e5b4a9cc8c1d7",
+                "responses": {
+                    "200": {
+                        "description": "Income classifications retrieved successfully"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/urban-rural-classifications": {
+            "get": {
+                "tags": [
+                    "Classification"
+                ],
+                "summary": "Get all urban/rural classifications",
+                "description": "Retrieve all distinct urban/rural classifications",
+                "operationId": "beb74e44a9c1d722fc424d3023a25dc1",
+                "responses": {
+                    "200": {
+                        "description": "Urban/rural classifications retrieved successfully"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
         "/api/psgc": {
             "get": {
                 "tags": [
@@ -1541,10 +1541,6 @@
             "description": "Authentication"
         },
         {
-            "name": "Classification",
-            "description": "Classification"
-        },
-        {
             "name": "Regions",
             "description": "Regions"
         },
@@ -1567,6 +1563,10 @@
         {
             "name": "Barangays",
             "description": "Barangays"
+        },
+        {
+            "name": "Classification",
+            "description": "Classification"
         },
         {
             "name": "PSGC",
