@@ -3,6 +3,7 @@
 use App\Http\Controllers\api\AuthenticationController;
 use App\Http\Controllers\API\PSGC_new\Q12026\CityController;
 use App\Http\Controllers\API\PSGC_new\Q12026\ClassificationController;
+use App\Http\Controllers\API\PSGC_new\Q12026\MunicipalityController;
 use App\Http\Controllers\API\PSGC_new\Q12026\ProvinceController;
 use App\Http\Controllers\API\PSGC_new\Q12026\PSGCController;
 use App\Http\Controllers\API\PSGC_new\Q12026\RegionController;
@@ -50,8 +51,8 @@ Route::get("cities/classification/component", [CityController::class,"component_
 Route::get("cities/classification/independent-component", [CityController::class,"independent_component_cities",])->name("api.cities.independent-component");
 
 // Municipality endpoints
-Route::get("municipalities", [Q12026Controller::class, "municipalities"])->name("api.municipalities",);
-Route::get("municipalities/{psgc_code}", [Q12026Controller::class,"municipality",])->name("api.municipality");
+Route::get("municipalities", [MunicipalityController::class, "municipalities"])->name("api.municipalities",);
+Route::get("municipalities/{psgc_code}", [MunicipalityController::class,"municipality",])->name("api.municipality");
 
 // Sub-Municipality endpoints
 Route::get("sub-municipalities", [Q12026Controller::class,"sub_municipalities",])->name("api.sub_municipalities");

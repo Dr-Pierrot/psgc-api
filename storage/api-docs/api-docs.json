@@ -183,78 +183,6 @@
                 ]
             }
         },
-        "/api/municipalities": {
-            "get": {
-                "tags": [
-                    "Municipalities"
-                ],
-                "summary": "Get all municipalities",
-                "description": "Retrieve all municipalities with pagination",
-                "operationId": "9e1b97e51b358551e9bcb1c6d4839340",
-                "parameters": [
-                    {
-                        "name": "page",
-                        "in": "query",
-                        "description": "Page number",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "default": 1
-                        }
-                    },
-                    {
-                        "name": "per_page",
-                        "in": "query",
-                        "description": "Records per page",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "default": 15
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Municipalities retrieved successfully"
-                    },
-                    "500": {
-                        "description": "Internal server error"
-                    }
-                }
-            }
-        },
-        "/api/municipalities/{psgc_code}": {
-            "get": {
-                "tags": [
-                    "Municipalities"
-                ],
-                "summary": "Get specific municipality",
-                "description": "Retrieve a specific municipality by its PSGC code",
-                "operationId": "c2b7d4a4c531e1d4f910a4a406579c5f",
-                "parameters": [
-                    {
-                        "name": "psgc_code",
-                        "in": "path",
-                        "description": "Municipality PSGC code",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Municipality retrieved successfully"
-                    },
-                    "404": {
-                        "description": "Municipality not found"
-                    },
-                    "500": {
-                        "description": "Internal server error"
-                    }
-                }
-            }
-        },
         "/api/sub-municipalities": {
             "get": {
                 "tags": [
@@ -734,6 +662,78 @@
                 "responses": {
                     "200": {
                         "description": "Urban/rural classifications retrieved successfully"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/municipalities": {
+            "get": {
+                "tags": [
+                    "Municipalities"
+                ],
+                "summary": "Get all municipalities",
+                "description": "Retrieve all municipalities with pagination",
+                "operationId": "8d76d62c31580e524a8971d552d8bfa8",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    },
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "description": "Records per page",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 15
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Municipalities retrieved successfully"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/municipalities/{psgc_code}": {
+            "get": {
+                "tags": [
+                    "Municipalities"
+                ],
+                "summary": "Get specific municipality",
+                "description": "Retrieve a specific municipality by its PSGC code",
+                "operationId": "46e210da81f67f3e3124d54c89e0d9c1",
+                "parameters": [
+                    {
+                        "name": "psgc_code",
+                        "in": "path",
+                        "description": "Municipality PSGC code",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Municipality retrieved successfully"
+                    },
+                    "404": {
+                        "description": "Municipality not found"
                     },
                     "500": {
                         "description": "Internal server error"
@@ -1541,10 +1541,6 @@
             "description": "Authentication"
         },
         {
-            "name": "Municipalities",
-            "description": "Municipalities"
-        },
-        {
             "name": "Sub-Municipalities",
             "description": "Sub-Municipalities"
         },
@@ -1559,6 +1555,10 @@
         {
             "name": "Classification",
             "description": "Classification"
+        },
+        {
+            "name": "Municipalities",
+            "description": "Municipalities"
         },
         {
             "name": "PSGC",
