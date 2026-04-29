@@ -19,6 +19,16 @@ use OpenApi\Attributes as OA;
     ),
 )]
 
+#[OA\Tag(name: "Authentication", description: "The authentication endpoint.", x:["order" => 1])]
+#[OA\Tag(name: "PSGC", description: "The PSGC endpoint.", x:["order" => 2])]
+#[OA\Tag(name: "Classification", description: "The classification endpoint.", x:["order" => 3])]
+#[OA\Tag(name: "Regions", description: "The regions endpoint.", x:["order" => 4])]
+#[OA\Tag(name: "Provinces", description: "The provinces endpoint.", x:["order" => 5])]
+#[OA\Tag(name: "Cities", description: "The cities endpoint.", x:["order" => 6])]
+#[OA\Tag(name: "Municipalities", description: "The municipalities endpoint.", x:["order" => 7])]
+#[OA\Tag(name: "Sub-Municipalities", description: "The sub-municipalities endpoint.", x:["order" => 8])]
+#[OA\Tag(name: "Barangays", description: "The barangays endpoint.", x:["order" => 9])]
+
 
 #[OA\SecurityScheme(
     securityScheme: "sanctum",

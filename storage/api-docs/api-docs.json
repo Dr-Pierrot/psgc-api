@@ -1538,39 +1538,48 @@
     "tags": [
         {
             "name": "Authentication",
-            "description": "Authentication"
-        },
-        {
-            "name": "Barangays",
-            "description": "Barangays"
-        },
-        {
-            "name": "Cities",
-            "description": "Cities"
-        },
-        {
-            "name": "Classification",
-            "description": "Classification"
-        },
-        {
-            "name": "Municipalities",
-            "description": "Municipalities"
+            "description": "The authentication endpoint.",
+            "x-order": 1
         },
         {
             "name": "PSGC",
-            "description": "PSGC"
+            "description": "The PSGC endpoint.",
+            "x-order": 2
         },
         {
-            "name": "Provinces",
-            "description": "Provinces"
+            "name": "Classification",
+            "description": "The classification endpoint.",
+            "x-order": 3
         },
         {
             "name": "Regions",
-            "description": "Regions"
+            "description": "The regions endpoint.",
+            "x-order": 4
+        },
+        {
+            "name": "Provinces",
+            "description": "The provinces endpoint.",
+            "x-order": 5
+        },
+        {
+            "name": "Cities",
+            "description": "The cities endpoint.",
+            "x-order": 6
+        },
+        {
+            "name": "Municipalities",
+            "description": "The municipalities endpoint.",
+            "x-order": 7
         },
         {
             "name": "Sub-Municipalities",
-            "description": "Sub-Municipalities"
+            "description": "The sub-municipalities endpoint.",
+            "x-order": 8
+        },
+        {
+            "name": "Barangays",
+            "description": "The barangays endpoint.",
+            "x-order": 9
         }
     ]
 }
