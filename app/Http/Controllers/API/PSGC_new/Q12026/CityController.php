@@ -78,18 +78,13 @@ class CityController extends Controller
                 );
             }
 
-            $barangayIdentifier = PSGCHelper::extractBarangayIdentifier(
-                $psgcCode,
-            );
             $perPage = $request->input("per_page", 15);
 
             // Get barangays matching the city/municipality's barangay identifier
             $data = Q12026::barangays()
-                ->where(
-                    "barangay_identifier",
-                    "like",
-                    $barangayIdentifier . "%",
-                )
+                ->byRegionCode($municity->region_code)
+                ->byProvinceCode($municity->province_code)
+                ->byMunCityCode($municity->mun_city_code)
                 ->paginate($perPage);
 
             return response()->json(

@@ -176,22 +176,15 @@ class ProvinceController extends Controller
                 return PSGCHelper::formatErrorResponse("Province not found", 404);
             }
 
-            $munCityIdentifier = PSGCHelper::extractMunCityIdentifier(
-                $psgcCode,
-            );
             $perPage = $request->input("per_page", 15);
 
             // Get both cities and municipalities for this province
-            $citiesQuery = Q12026::cities()->where(
-                "mun_city_identifier",
-                "like",
-                $munCityIdentifier . "%",
-            );
-            $municipalitiesQuery = Q12026::municipalities()->where(
-                "mun_city_identifier",
-                "like",
-                $munCityIdentifier . "%",
-            );
+            $citiesQuery = Q12026::cities()
+                ->byRegionCode($province->region_code)
+                ->byProvinceCode($province->province_code);
+            $municipalitiesQuery = Q12026::municipalities()
+                ->byRegionCode($province->region_code)
+                ->byProvinceCode($province->province_code);
 
             // Combine results and paginate
             $data = $citiesQuery
@@ -269,18 +262,12 @@ class ProvinceController extends Controller
                 return PSGCHelper::formatErrorResponse("Province not found", 404);
             }
 
-            $barangayIdentifier = PSGCHelper::extractBarangayIdentifier(
-                $psgcCode,
-            );
             $perPage = $request->input("per_page", 15);
 
             // Get barangays matching the province's barangay identifier
             $data = Q12026::barangays()
-                ->where(
-                    "barangay_identifier",
-                    "like",
-                    $barangayIdentifier . "%",
-                )
+                ->byRegionCode($province->region_code)
+                ->byProvinceCode($province->province_code)
                 ->paginate($perPage);
 
             return response()->json(

@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\api\AuthenticationController;
+use App\Http\Controllers\API\AuthenticationController;
 use App\Http\Controllers\API\PSGC_new\Q12026\BarangayController;
 use App\Http\Controllers\API\PSGC_new\Q12026\CityController;
 use App\Http\Controllers\API\PSGC_new\Q12026\ClassificationController;
@@ -9,7 +9,6 @@ use App\Http\Controllers\API\PSGC_new\Q12026\ProvinceController;
 use App\Http\Controllers\API\PSGC_new\Q12026\PSGCController;
 use App\Http\Controllers\API\PSGC_new\Q12026\RegionController;
 use App\Http\Controllers\API\PSGC_new\Q12026\SubMunicipalityController;
-use App\Http\Controllers\API\PSGC_new\Q12026Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
